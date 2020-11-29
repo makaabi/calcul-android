@@ -79,9 +79,7 @@ protected void onCreate(Bundle savedInstanceState) {
                 int i = 1;
                 for (Character c : operations) {
                     double n = Double.parseDouble(String.valueOf(nombres[i]));
-                    Log.i(TAG, String.valueOf(n));
-                    Log.i(TAG, nombres[1]);
-                    Log.i(TAG, zonetxt);
+
                     if (c == '+')
                         res += n;
                     else if (c == '-')
@@ -131,6 +129,8 @@ protected void onCreate(Bundle savedInstanceState) {
 
     private class OperationClick implements View.OnClickListener{
 
+        private static final String TAG ="verif" ;
+
         @Override
         public void onClick(View view) {
             String zonetxt=(String) txt.getText();
@@ -159,11 +159,17 @@ protected void onCreate(Bundle savedInstanceState) {
             if(view==btnvir){
                 int i=zonearray.length-1;
                 while(i>0 && test){
+                    Log.i(TAG,zonearray[i]);
+
+
                     if(zonearray[i].equals("+") || zonearray[i].equals("-") || zonearray[i].equals("*") || zonearray[i].equals("/") ||zonearray[i].equals(".")){
                         lastchar=zonearray[i];
+                        if(lastchar.equals("."))
+                            test=false;
+                        else
+                            break;
                     }
-                    if(lastchar.equals("."))
-                        test=false;
+
                     i--;
                 }
 
